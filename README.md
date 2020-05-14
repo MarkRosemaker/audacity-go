@@ -39,7 +39,7 @@ To be done:
 - [x] implementation of universal `Command(cmd string, args ...string) Response` function
 - [x] implementation of basic commands
 - [ ] implementation of more commands
-- [ ] automatic starting of Audacity if it's not running/pipes are not found
+- [ ] automatic starting of Audacity if it's not running, i.e. pipes are not found
 - [ ] testing and implementation with non-windows system
 
 Pull requests are very welcome!
