@@ -4,13 +4,18 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"strings"
 )
 
-// Command sends a command and returns the response.
+// Command sends any command and returns the response.
 // The number of arguments must be even, in the form of key and value pairs.
+// Use this function if your command is not otherwise implemented.
+// See the scripting reference here: https://manual.audacityteam.org/man/scripting_reference.html
 func Command(cmd string, args ...string) (resp Response) {
 	if k := len(args); k > 0 {
-		cmd += ":"
+		if !strings.HasSuffix(cmd, ":") {
+			cmd += ":"
+		}
 		if k%2 != 0 {
 			log.Fatal("[BUG] can't process command with odd number of arguments")
 		}

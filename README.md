@@ -8,7 +8,26 @@ This go package lets you control Audacity by using scripting/macros.
 import audacity "github.com/MarkRosemaker/audacity-go"
 ```
 
-After you've used the commands, make sure
+After your program is done using all the Audacity commands, make sure to call `ClosePipes()` to close the pipes to and from Audacity.
+
+## Example
+
+```go
+defer audacity.ClosePipes()
+
+// some code, e.g. a loop
+
+path := "D:/audio/myfile.m4a"
+
+audacity.RemoveTracks() // clear the project
+audacity.Import(path) // import the file
+audacity.SelectAll() // select all for noise reduction to be applied
+audacity.NoiseReduction() // apply noise reduction
+audacity.Normalize() // normalize the audio
+
+target := strings.Replace(path, ".m4a", ".mp3", 1)
+audacity.Export(target) // export the project to mp3 (or whatever extension target has)
+```
 
 ## Progress
 
